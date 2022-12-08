@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AddPostForm from './features/posts/AddPostForm'
 import PostsList from './features/posts/PostsLists'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+      <AddPostForm />
      <PostsList />
     </div>
   )
