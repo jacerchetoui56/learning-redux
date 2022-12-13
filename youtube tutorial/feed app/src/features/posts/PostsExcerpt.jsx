@@ -2,8 +2,11 @@ import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import ReactionButtons from "./ReactionsButtons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectPostById } from "./postsSlice";
 
-export const PostsExcerpt = ({ post }) => {
+let PostsExcerpt = ({ postId }) => {
+  const post = useSelector((state) => selectPostById(state, postId));
   return (
     <article>
       <h2>{post.title}</h2>
@@ -17,3 +20,8 @@ export const PostsExcerpt = ({ post }) => {
     </article>
   );
 };
+
+// !!====>  React memo will prevent the component from re-rendering if the props are the same
+// PostsExcerpt = React.memo(PostsExcerpt);
+// * But we are not going to use it rn
+export { PostsExcerpt };
