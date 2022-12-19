@@ -59,7 +59,7 @@ export const deletePost = createAsyncThunk(
   async (initialPost) => {
     const { id } = initialPost;
 
-    const response = await axios.delete(`${POSTS_URL}/${id}`);
+    const response = await axios.delete(`${POST_URL}/${id}`);
     if (response?.status === 200) return initialPost;
     return `${response?.status}: ${response?.statusText}`;
   }
@@ -126,10 +126,7 @@ const postsSlice = createSlice({
           console.log(action.payload);
           return;
         }
-        // const { id } = action.payload;
         action.payload.date = new Date().toISOString();
-        // const posts = state.posts.filter((post) => post.id != id);
-        // state.posts = [...posts, action.payload];
         postsAdapter.upsertOne(state, action.payload);
       })
       .addCase(deletePost.fulfilled, (state, action) => {
